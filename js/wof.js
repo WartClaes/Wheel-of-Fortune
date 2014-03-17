@@ -4,13 +4,19 @@
         function init(){
             // reverse the prizes in because it is spinning clockwise
             if(!settings.prizes){
-                console.log('No prizes set')
+                console.log('No prizes set');
                 return false;
             }
 
             settings.prizes = settings.prizes.reverse();
 
-            settings.button.on('click', function(event) {
+            if(settings.timeout !== false){
+                setTimeout(function(){
+                    if (!settings.button.hasClass('disabled')) spin();
+                }, settings.timeout);
+            }
+
+            settings.button.on('click', function(event){
                 event.preventDefault();
                 if (!$(this).hasClass('disabled')) spin();
             });
@@ -42,27 +48,30 @@
 
             if(settings.marker){
                 //just before wheel finish
-                setTimeout(function () {
+                setTimeout(function(){
                     //reset marker
                     settings.marker.transition({
                         rotate: '0deg'
                     }, 300, 'easeOutQuad');
+
+                    settings.marker.removeClass('moving');
                 }, settings.duration - 500);
-    
+                
+                settings.marker.addClass('moving');
                 //move marker
                 settings.marker.transition({
                     rotate: '-20deg'
-                }, 0, 'snap');
+                }, 100, 'easeInQuad');
             }
             
-            setTimeout(function () {
+            setTimeout(function(){
 
                 var spin = position,
                     degrees = spin % 360,
                     win = Math.ceil(degrees / segment) - 1,
                     prize = settings.prizes[win];
 
-                setTimeout(function () {
+                setTimeout(function(){
                     if(settings.multiple){
                         settings.button.removeClass('disabled');
                     }
@@ -91,7 +100,8 @@
                 prizes: false,
                 duration: 6000,
                 multiple: false,
-                wonPrize : false
+                wonPrize: false,
+                timeout: false
             }, options),
             position = 0;
 
