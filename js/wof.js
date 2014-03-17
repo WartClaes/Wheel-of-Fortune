@@ -44,7 +44,7 @@
             }, 0)
                 .transition({
                 rotate: position + 'deg'
-            }, settings.duration, 'easeOutCubic');
+            }, settings.duration, 'cubic-bezier(.25,0,.17,1)');
 
             if(settings.marker){
                 //just before wheel finish
