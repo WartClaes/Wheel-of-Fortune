@@ -2,7 +2,7 @@
 
 Creates a wheel of fortune based on [http://jsfiddle.net/jquery4u/sNYYD/](http://http://jsfiddle.net/jquery4u/sNYYD/)
 
-Here is the [demo](#)
+Here is the [demo](http://turboturbo.be/playground/Wheel-of-Fortune/)
 
 ## Usage
 
