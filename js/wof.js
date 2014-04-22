@@ -4,7 +4,7 @@
         function init(){
             // reverse the prizes in because it is spinning clockwise
             if(!settings.prizes){
-                console.log('No prizes set');
+                console.error('No prizes set');
                 return false;
             }
 
@@ -27,7 +27,7 @@
             resetSpin();
 
             settings.button.addClass('disabled');
-            
+
             var nrOfPrizes = settings.prizes.length,
                 segment = 360 / nrOfPrizes;
                 position = 1500 + Math.round(Math.random() * 1500);
@@ -44,7 +44,7 @@
             }, 0)
                 .transition({
                 rotate: position + 'deg'
-            }, settings.duration, 'cubic-bezier(.25,0,.17,1)');
+            }, settings.duration, settings.easing);
 
             if(settings.marker){
                 //just before wheel finish
@@ -56,14 +56,14 @@
 
                     settings.marker.removeClass('moving');
                 }, settings.duration - 500);
-                
+
                 settings.marker.addClass('moving');
                 //move marker
                 settings.marker.transition({
                     rotate: '-20deg'
                 }, 100, 'easeInQuad');
             }
-            
+
             setTimeout(function(){
 
                 var spin = position,
@@ -101,7 +101,8 @@
                 duration: 6000,
                 multiple: false,
                 wonPrize: false,
-                timeout: false
+                timeout: false,
+                easing: 'cubic-bezier(.25,0,.17,1)'
             }, options),
             position = 0;
 
