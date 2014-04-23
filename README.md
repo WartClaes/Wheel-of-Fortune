@@ -80,7 +80,7 @@ Set a timeout on the spin. Best used when it starts automatically.
 Default: **false**
 
 	$('#foo').wof({
-		wonPrize: 6
+		timeout: 1000
 	});
 	
 #### easing
