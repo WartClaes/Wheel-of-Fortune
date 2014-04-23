@@ -48,7 +48,7 @@ Default: **false**, you need to set some prizes.
 	});
 
 #### duration
-What is the time of the aniation in milliseconds.
+What is the time of the animation in milliseconds.
 
 Default: **6000**.
 
